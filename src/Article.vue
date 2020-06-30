@@ -3,7 +3,7 @@
         Header(v-model='name')
         section.galaxy
             .galaxy-head
-                button(@click='sortBy = !sortBy')
+                button(@click='sortButton')
                     span Galaxy Name
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Constellation
@@ -32,24 +32,29 @@
         },
         data() {
             return{
-                sortBy: false,
                 loading: true,
+                sortBy: false,
                 name: '',
                 galaxies: [],
                 errors: []
             }
         },
+        methods: {
+            sortButton() {
+                this.sortBy = !this.sortBy
+            }
+        },
         computed: {
             filteredList () {
-                let name = this.name;
+                let name = this.name
 
                 if (this.sortBy && name==='') {
-                    this.sortBy = false;
-                    return this.galaxies.reverse();
+                    this.sortBy = false
+                    return this.galaxies.reverse()
                 } else {
                     return this.galaxies.filter(function (elem) {
-                        if (name==='') return true;
-                        else return elem.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
+                        if (name==='') return true
+                        else return elem.name.toLowerCase().indexOf(name.toLowerCase()) > -1
                     })
                 }
             }
@@ -58,7 +63,7 @@
             axios
                 .get('https://cors-anywhere.herokuapp.com/' + 'https://test-frontend-api.herokuapp.com/galaxies')
                 .then(response => {
-                    this.galaxies = response.data;
+                    this.galaxies = response.data
                 })
                 .catch(e => {
                     this.errors.push(e)
