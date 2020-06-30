@@ -1,4 +1,4 @@
-# MDail frontend
+# Galaxies frontend
 
 ## Prepare
 
