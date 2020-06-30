@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang='pug'>
     header
         h1 Named galaxies
         .search
@@ -29,7 +29,7 @@
     }
 </script>
 
-<style lang="stylus">
+<style lang='stylus'>
     header
         display flex
         justify-content space-between

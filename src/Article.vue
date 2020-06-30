@@ -1,13 +1,9 @@
-<template lang="pug">
+<template lang='pug'>
     article
-        Header(
-            v-model="name"
-        )
+        Header(v-model='name')
         section.galaxy
             .galaxy-head
-                button(
-                    @click="sortBy = !sortBy"
-                )
+                button(@click='sortBy = !sortBy')
                     span Galaxy Name
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Constellation
@@ -15,9 +11,9 @@
             .galaxy-wrap
                 .galaxy-load(v-if='loading') Loading...
                 ul.galaxy-list(v-else='')
-                    li.galaxy-item(v-for='galaxy in filteredList')
+                    li.galaxy-item(v-for='galaxy in filteredList' :key='galaxy.id')
                         .galaxy-itemName
-                            div(class="D(f) Ai(c)")
+                            div(class='D(f) Ai(c)')
                                 .galaxy-itemNameImg
                                     img(:src='galaxy.img' :alt='galaxy.name' :title='galaxy.name')
                                 p {{ galaxy.name }}
@@ -74,7 +70,7 @@
     }
 </script>
 
-<style lang="stylus">
+<style lang='stylus'>
     .galaxy
         max-width 1130px
         margin auto

@@ -1,8 +1,8 @@
-<template lang="pug">
+<template lang='pug'>
     aside
 </template>
 
-<style lang="stylus">
+<style lang='stylus'>
     aside
         background $sidebar-grey
 </style>

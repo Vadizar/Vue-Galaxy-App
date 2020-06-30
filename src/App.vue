@@ -1,11 +1,11 @@
-<template lang="pug">
+<template lang='pug'>
     main
         Sidebar
         transition
             router-view
 </template>
 
-<style lang="stylus">
+<style lang='stylus'>
     main
         display grid
         grid-template-rows 70px 1fr
