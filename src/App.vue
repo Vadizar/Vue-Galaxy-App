@@ -1,8 +1,7 @@
 <template lang='pug'>
     main
         Sidebar
-        transition
-            router-view
+        router-view
 </template>
 
 <style lang='stylus'>

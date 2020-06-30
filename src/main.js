@@ -10,6 +10,10 @@ const routes = [
   {
     path: '/',
     component: require('./Article').default
+  },
+  {
+    path: '/account',
+    component: require('./Account').default
   }
 ];
 
@@ -18,8 +22,8 @@ const router = new VueRouter({
   mode: 'history', // History API
   //path: '*', component: NotFoundComponent, // 404
   routes, // сокращение `routes: routes`
-  linkActiveClass: "",
-  linkExactActiveClass: "active",
+  linkActiveClass: '',
+  linkExactActiveClass: 'active',
 })
 
 new Vue({
