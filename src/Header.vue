@@ -48,10 +48,10 @@
         transition border-color $time
         border 1px solid $devider-grey
         border-radius 4px
+        &:hover
+            border-color $night-grey
         i
             font-size 16px
         input
             padding 0 0 0 16px
-        &:hover
-            border-color $night-grey
 </style>
