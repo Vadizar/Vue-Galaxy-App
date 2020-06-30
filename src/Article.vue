@@ -1,7 +1,7 @@
 <template lang='pug'>
     article
         Header(v-model='name')
-        section.galaxy
+        .galaxy
             .galaxy-head
                 button(@click='sortButton')
                     span Galaxy Name
@@ -13,10 +13,10 @@
                 ul.galaxy-list(v-else='')
                     li.galaxy-item(v-for='galaxy in filteredList' :key='galaxy.id')
                         .galaxy-itemName
-                            div(class='D(f) Ai(c)')
+                            figure(class='D(f) Ai(c)')
                                 .galaxy-itemNameImg
                                     img(:src='galaxy.img' :alt='galaxy.name' :title='galaxy.name')
-                                p {{ galaxy.name }}
+                                figcaption {{ galaxy.name }}
                         .galaxy-itemConstellation {{ galaxy.constellation }}
                         .galaxy-itemDesc {{ galaxy.originOfName }}
 
@@ -76,6 +76,11 @@
 </script>
 
 <style lang='stylus'>
+    article
+        position relative
+        @media (min-width 1024px)
+            height 100vh
+            overflow auto
     .galaxy
         max-width 1130px
         margin auto

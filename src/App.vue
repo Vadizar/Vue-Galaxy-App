@@ -13,11 +13,6 @@
         @media (min-width 1024px)
             grid-template-rows 1fr 1fr
             grid-template-columns 270px 1fr
-    article
-        position relative
-        @media (min-width 1024px)
-            height 100vh
-            overflow auto
 </style>
 
 <script>
