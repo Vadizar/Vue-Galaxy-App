@@ -12,16 +12,17 @@
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Constellation
                 span Origin of name
-            ul.galaxy-wrapper
-                li(v-if='loading') Loading...
-                li.galaxy-item(v-else='' v-for='galaxy in filteredList')
-                    .galaxy-itemName
-                        div(class="D(f) Ai(c)")
-                            .galaxy-itemNameImg
-                                img(:src='galaxy.img' :alt='galaxy.name' :title='galaxy.name')
-                            p {{ galaxy.name }}
-                    .galaxy-itemConstellation {{ galaxy.constellation }}
-                    .galaxy-itemDesc {{ galaxy.originOfName }}
+            .galaxy-wrap
+                .galaxy-load(v-if='loading') Loading...
+                ul.galaxy-list(v-else='')
+                    li.galaxy-item(v-for='galaxy in filteredList')
+                        .galaxy-itemName
+                            div(class="D(f) Ai(c)")
+                                .galaxy-itemNameImg
+                                    img(:src='galaxy.img' :alt='galaxy.name' :title='galaxy.name')
+                                p {{ galaxy.name }}
+                        .galaxy-itemConstellation {{ galaxy.constellation }}
+                        .galaxy-itemDesc {{ galaxy.originOfName }}
 
 </template>
 
@@ -95,9 +96,13 @@
         @media (min-width 1024px)
             display grid
             grid-template-columns 27% 19% 54%
-    .galaxy-wrapper
+    .galaxy-wrap
         @media (min-width 1024px)
             border 1px solid $devider-grey
+    .galaxy-load
+        padding 7px 10px
+        @media (min-width 1024px)
+            padding 9px 20px
     .galaxy-item
         display grid
         grid-template-columns 100%
