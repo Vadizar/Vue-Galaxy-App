@@ -10,7 +10,8 @@
         display grid
         grid-template-rows 70px 1fr
         height 100vh
-        @media (min-width 1024px)
+        background $blue
+        @media (min-width $lg)
             grid-template-rows 1fr 1fr
             grid-template-columns 270px 1fr
 </style>

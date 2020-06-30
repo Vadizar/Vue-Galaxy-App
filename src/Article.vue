@@ -78,14 +78,17 @@
 <style lang='stylus'>
     article
         position relative
-        @media (min-width 1024px)
+        background $white
+        border-radius 10px 10px 0 0
+        @media (min-width $lg)
+            border-radius 10px 0 0 10px
             height 100vh
             overflow auto
     .galaxy
         max-width 1130px
         margin auto
         padding 0 15px 15px
-        @media (min-width 1024px)
+        @media (min-width $lg)
             padding 0 60px 60px
     .galaxy-head
         display none
@@ -94,27 +97,27 @@
         text-transform uppercase
         letter-spacing 1px
         color $grey
-        padding 0 0 15px
+        padding 15px 0
         button
             text-align left
             font-weight 700
             color $night-grey
-        @media (min-width 1024px)
+        @media (min-width $lg)
             display grid
             grid-template-columns 27% 19% 54%
     .galaxy-wrap
-        @media (min-width 1024px)
+        @media (min-width $lg)
             border 1px solid $devider-grey
     .galaxy-load
         padding 7px 10px
-        @media (min-width 1024px)
+        @media (min-width $lg)
             padding 9px 20px
     .galaxy-item
         display grid
         grid-template-columns 100%
-        margin 24px 0 0
+        margin 12px 0 24px
         transition background $time
-        @media (min-width 1024px)
+        @media (min-width $lg)
             grid-template-columns 27% 19% 54%
             margin 0
             &:hover
@@ -125,7 +128,7 @@
         margin 0 17px 0 0
         overflow hidden
         font-size 10px
-        @media (min-width 1024px)
+        @media (min-width $lg)
             min-width 30px
             width 30px
             height 30px
@@ -140,7 +143,7 @@
         &:before
             content 'Galaxy Name'
             padding 0 0 2px
-        @media (min-width 1024px)
+        @media (min-width $lg)
             padding 9px 20px
             border none
     .galaxy-itemConstellation
@@ -159,7 +162,7 @@
             line-height 14px
             letter-spacing 1px
             text-transform uppercase
-        @media (min-width 1024px)
+        @media (min-width $lg)
             display flex
             align-items center
             &:before
@@ -171,7 +174,7 @@
         line-height 17px
         border-left 1px solid $devider-grey
         border-right 1px solid $devider-grey
-        @media (min-width 1024px)
+        @media (min-width $lg)
             padding 14px 15px
             font-size 16px
             line-height 24px

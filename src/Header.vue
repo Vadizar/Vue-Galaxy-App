@@ -27,16 +27,30 @@
         display flex
         justify-content space-between
         flex-direction column
+        position sticky
+        top 0
+        z-index 1
+        background $white
         max-width 1130px
-        margin auto
-        padding 0 15px
-        @media (min-width 1024px)
+        margin 10px auto 0
+        padding 12px 15px
+        &:after
+            content ''
+            position absolute
+            left 0
+            right 0
+            bottom -15px
+            height 15px
+            z-index 1
+            background linear-gradient(#fff,rgba(255,255,255,.1))
+        @media (min-width $lg)
             align-items center
             flex-direction row
-            padding 53px 60px 46px
+            margin auto
+            padding 45px 60px 10px
         h1
             font 500 34px/40px 'R'
-            padding 17px 0 13px
+            padding 0 0 15px
     .search
         display flex
         align-items center
