@@ -8,7 +8,9 @@
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Constellation
                 span Origin of name
-            .galaxy-wrap
+            .galaxy-error(v-if='errored')
+                | We're sorry, we're not able to retrieve this information at the moment, please try back later
+            .galaxy-wrap(v-else='')
                 .galaxy-load(v-if='loading') Loading...
                 ul.galaxy-list(v-else='')
                     li.galaxy-item(v-for='galaxy in filteredList' :key='galaxy.id')
@@ -33,10 +35,10 @@
         data() {
             return{
                 loading: true,
+                errored: false,
                 sortBy: false,
                 name: '',
-                galaxies: [],
-                errors: []
+                galaxies: []
             }
         },
         methods: {
@@ -65,9 +67,9 @@
                 .then(response => {
                     this.galaxies = response.data
                 })
-                .catch(e => {
-                    this.errors.push(e)
-                })
+                .catch(error =>
+                    this.errored = true
+                )
                 .finally(() =>
                     this.loading = false
                 )
@@ -105,6 +107,13 @@
         @media (min-width $lg)
             display grid
             grid-template-columns 27% 19% 54%
+    .galaxy-error
+        background palevioletred
+        border-radius 6px
+        padding 20px
+        margin 15px 0
+        font-weight 500
+        color #fff
     .galaxy-wrap
         @media (min-width $lg)
             border 1px solid $devider-grey
