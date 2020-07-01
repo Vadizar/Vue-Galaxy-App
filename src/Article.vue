@@ -2,25 +2,25 @@
     article
         Header(v-model='name')
         .galaxy
-            .galaxy-head
+            .galaxy__head
                 button(@click='sortButton')
                     span Galaxy Name
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Constellation
                 span Origin of name
-            .galaxy-error(v-if='errored')
-                | We're sorry, we're not able to retrieve this information at the moment, please try back later
-            .galaxy-wrap(v-else='')
-                .galaxy-load(v-if='loading') Loading...
-                ul.galaxy-list(v-else='')
-                    li.galaxy-item(v-for='galaxy in filteredList' :key='galaxy.id')
-                        .galaxy-itemName
+            .galaxy__error(v-if='errored')
+                | We're sorry, we're not able to retrieve this information at the moment, please try back later.
+            .galaxy__wrap(v-else='')
+                .galaxy__load(v-if='loading') Loading...
+                ul.galaxy__list(v-else='')
+                    li.galaxy__item(v-for='galaxy in filteredList' :key='galaxy.id')
+                        .galaxy__itemName
                             figure(class='D(f) Ai(c)')
-                                .galaxy-itemNameImg
+                                .galaxy__itemNameImg
                                     img(:src='galaxy.img' :alt='galaxy.name' :title='galaxy.name')
                                 figcaption {{ galaxy.name }}
-                        .galaxy-itemConstellation {{ galaxy.constellation }}
-                        .galaxy-itemDesc {{ galaxy.originOfName }}
+                        .galaxy__itemConstellation {{ galaxy.constellation }}
+                        .galaxy__itemDesc {{ galaxy.originOfName }}
 
 </template>
 
@@ -61,7 +61,7 @@
                 }
             }
         },
-        mounted() {
+        created() {
             axios
                 .get('https://cors-anywhere.herokuapp.com/' + 'https://test-frontend-api.herokuapp.com/galaxies')
                 .then(response => {
@@ -92,7 +92,7 @@
         padding 0 15px 15px
         @media (min-width $lg)
             padding 0 60px 60px
-    .galaxy-head
+    .galaxy__head
         display none
         font-size 12px
         line-height 14px
@@ -107,21 +107,21 @@
         @media (min-width $lg)
             display grid
             grid-template-columns 27% 19% 54%
-    .galaxy-error
+    .galaxy__error
         background palevioletred
         border-radius 6px
         padding 20px
         margin 15px 0
         font-weight 500
         color #fff
-    .galaxy-wrap
+    .galaxy__wrap
         @media (min-width $lg)
             border 1px solid $devider-grey
-    .galaxy-load
+    .galaxy__load
         padding 7px 10px
         @media (min-width $lg)
             padding 9px 20px
-    .galaxy-item
+    .galaxy__item
         display grid
         grid-template-columns 100%
         margin 12px 0 24px
@@ -131,7 +131,7 @@
             margin 0
             &:hover
                 background rgba(97, 128, 239, 0.2)
-    .galaxy-itemNameImg
+    .galaxy__itemNameImg
         width 20px
         height 20px
         margin 0 17px 0 0
@@ -146,7 +146,7 @@
             object-fit cover
             height 100%
             width 100%
-    .galaxy-itemName
+    .galaxy__itemName
         padding 7px 10px
         border 1px solid $devider-grey
         &:before
@@ -155,15 +155,15 @@
         @media (min-width $lg)
             padding 9px 20px
             border none
-    .galaxy-itemConstellation
+    .galaxy__itemConstellation
         &:before
             content 'Constellation'
             padding 0 0 11px
-    .galaxy-itemDesc
+    .galaxy__itemDesc
         &:before
             content 'Origin of name'
             padding 0 0 11px
-    .galaxy-itemName, .galaxy-itemConstellation, .galaxy-itemDesc
+    .galaxy__itemName, .galaxy__itemConstellation, .galaxy__itemDesc
         border-bottom 1px solid $devider-grey
         &:before
             display block
@@ -176,7 +176,7 @@
             align-items center
             &:before
                 display none
-    .galaxy-itemConstellation, .galaxy-itemDesc
+    .galaxy__itemConstellation, .galaxy__itemDesc
         padding 8px 10px 12px
         font-weight 300
         font-size 14px
