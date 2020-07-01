@@ -5,7 +5,7 @@ import './app.styl'
 
 Vue.use(VueRouter);
 
-// Определяем компоненты для маршрутов
+// Components for router
 const routes = [
   {
     path: '/',
@@ -17,11 +17,11 @@ const routes = [
   }
 ];
 
-// Создаём маршрутизатор
+// Create router
 const router = new VueRouter({
   mode: 'history', // History API
   //path: '*', component: NotFoundComponent, // 404
-  routes, // сокращение `routes: routes`
+  routes, // `routes: routes`
   linkActiveClass: '',
   linkExactActiveClass: 'active',
 })
