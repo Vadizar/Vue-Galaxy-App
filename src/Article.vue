@@ -90,7 +90,7 @@
             height 100vh
             overflow auto
     .galaxy
-        max-width 1130px
+        max-width $xl
         margin auto
     .galaxy__head
         display none

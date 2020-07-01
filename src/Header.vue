@@ -31,7 +31,7 @@
         top 0
         z-index 1
         background $white
-        max-width 1130px
+        max-width $xl
         margin 10px auto 0
         padding 12px 0
         &:after
