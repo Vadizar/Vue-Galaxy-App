@@ -33,7 +33,7 @@
         background $white
         max-width 1130px
         margin 10px auto 0
-        padding 12px 15px
+        padding 12px 0
         &:after
             content ''
             position absolute
@@ -47,7 +47,7 @@
             align-items center
             flex-direction row
             margin auto
-            padding 45px 60px 10px
+            padding 45px 0 10px
         h1
             font 500 34px/40px 'R'
             padding 0 0 15px

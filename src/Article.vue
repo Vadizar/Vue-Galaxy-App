@@ -1,16 +1,15 @@
 <template lang='pug'>
     article
         Header(v-model='name')
-        .galaxy
+        Error(v-if='errored')
+        .galaxy(v-else='')
             .galaxy__head
                 button(@click='sortButton')
                     span Galaxy Name
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Constellation
                 span Origin of name
-            .galaxy__error(v-if='errored')
-                | We're sorry, we're not able to retrieve this information at the moment, please try back later.
-            .galaxy__wrap(v-else='')
+            .galaxy__wrap
                 .galaxy__load(v-if='loading') Loading...
                 ul.galaxy__list(v-else='')
                     li.galaxy__item(v-for='galaxy in filteredList' :key='galaxy.id')
@@ -26,11 +25,13 @@
 
 <script>
     import Header from './Header'
+    import Error from './Error'
     import axios from 'axios'
 
     export default {
         components: {
-            Header
+            Header,
+            Error
         },
         data() {
             return{
@@ -82,16 +83,15 @@
         position relative
         background $white
         border-radius 10px 10px 0 0
+        padding 0 15px 15px
         @media (min-width $lg)
             border-radius 10px 0 0 10px
+            padding 0 60px 60px
             height 100vh
             overflow auto
     .galaxy
         max-width 1130px
         margin auto
-        padding 0 15px 15px
-        @media (min-width $lg)
-            padding 0 60px 60px
     .galaxy__head
         display none
         font-size 12px
@@ -107,13 +107,6 @@
         @media (min-width $lg)
             display grid
             grid-template-columns 27% 19% 54%
-    .galaxy__error
-        background palevioletred
-        border-radius 6px
-        padding 20px
-        margin 15px 0
-        font-weight 500
-        color #fff
     .galaxy__wrap
         @media (min-width $lg)
             border 1px solid $devider-grey

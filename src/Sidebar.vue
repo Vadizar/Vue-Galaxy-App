@@ -31,7 +31,3 @@
                 display block
                 margin 8px 20px
 </style>
-
-<script>
-
-</script>
