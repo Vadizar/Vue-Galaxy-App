@@ -59,11 +59,11 @@
         font-size 14px
         padding 0 14px
         color $grey
-        transition border-color $time
+        transition box-shadow $time
         border 1px solid $devider-grey
         border-radius 4px
         &:hover
-            border-color $night-grey
+            box-shadow 0 1px 6px 0 rgba(0,0,0,.2)
         i
             font-size 16px
         input
