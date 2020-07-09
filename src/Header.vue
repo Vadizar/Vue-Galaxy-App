@@ -47,10 +47,10 @@
             align-items center
             flex-direction row
             margin auto
-            padding 45px 0 10px
+            padding 30px 0 10px
         h1
             font 500 34px/40px 'R'
-            padding 0 0 15px
+            padding 15px 0
     .search
         display flex
         align-items center
