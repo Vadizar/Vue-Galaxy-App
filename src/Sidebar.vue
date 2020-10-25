@@ -15,8 +15,6 @@
         color $white
         @media (min-width $lg)
             padding 38px 0
-            height 100vh
-            overflow auto
     nav
         a
             display inline-block

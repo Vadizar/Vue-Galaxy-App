@@ -32,8 +32,7 @@
         z-index 1
         background $white
         max-width $xl
-        margin 10px auto 0
-        padding 12px 0
+        margin auto
         &:after
             content ''
             position absolute
@@ -46,8 +45,7 @@
         @media (min-width $lg)
             align-items center
             flex-direction row
-            margin auto
-            padding 30px 0 10px
+            padding 32px 0 0
         h1
             font 500 34px/40px 'R'
             padding 15px 0
@@ -67,5 +65,5 @@
         i
             font-size 16px
         input
-            padding 0 0 0 16px
+            padding 0 0 0 12px
 </style>
