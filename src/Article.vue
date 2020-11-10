@@ -42,6 +42,19 @@
                 galaxies: []
             }
         },
+        created() {
+            axios
+                .get('https://cors-anywhere.herokuapp.com/' + 'https://test-frontend-api.herokuapp.com/galaxies')
+                .then(response => {
+                    this.galaxies = response.data
+                })
+                .catch(error =>
+                        this.errored = true
+                )
+                .finally(() =>
+                        this.loading = false
+                )
+        },
         methods: {
             sortButton() {
                 this.sortBy = !this.sortBy
@@ -61,19 +74,6 @@
                     })
                 }
             }
-        },
-        created() {
-            axios
-                .get('https://cors-anywhere.herokuapp.com/' + 'https://test-frontend-api.herokuapp.com/galaxies')
-                .then(response => {
-                    this.galaxies = response.data
-                })
-                .catch(error =>
-                    this.errored = true
-                )
-                .finally(() =>
-                    this.loading = false
-                )
         }
     }
 </script>
