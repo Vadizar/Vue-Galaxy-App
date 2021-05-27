@@ -16,8 +16,8 @@
 </style>
 
 <script>
-    import Sidebar from './Sidebar'
-    import Article from './Article'
+    import Sidebar from '@/Sidebar'
+    import Article from '#/Article'
     export default {
         components: {
             Sidebar,

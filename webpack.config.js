@@ -1,7 +1,6 @@
 const
     webpack = require('webpack'),
     path = require('path'),
-    autoprefixer = require('autoprefixer'),
     { VueLoaderPlugin } = require('vue-loader'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     IconFontPlugin = require('icon-font-loader').Plugin,
@@ -20,9 +19,10 @@ module.exports = {
         historyApiFallback: true,
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.vue'],
         alias: {
-            '@': path.resolve('src'),
+            '#': path.resolve(__dirname, './src/pages'),
+            '@': path.resolve(__dirname, './src/partials')
         }
     },
     module: {
@@ -86,15 +86,14 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.html',
-            inject: true
+            template: 'index.html'
         }),
         new webpack.LoaderOptionsPlugin({
             options: {
                 stylus: {
                     import: [
-                        '../src/css/vars.styl',
-                        '../src/css/func.styl'
+                        path.resolve(__dirname, './src/assets/styles/vars.styl'),
+                        path.resolve(__dirname, './src/assets/styles/func.styl')
                     ]
                 }
             }

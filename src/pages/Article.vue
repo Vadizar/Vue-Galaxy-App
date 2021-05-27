@@ -26,8 +26,8 @@
 </template>
 
 <script>
-    import Header from './Header'
-    import Error from './Error'
+    import Header from '@/Header'
+    import Error from '@/Error'
 
     export default {
         components: {

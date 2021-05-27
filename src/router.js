@@ -7,17 +7,17 @@ const routes = [
     {
         name: 'Home',
         path: '/',
-        component: () => import('./Article'),
+        component: () => import('#/Article'),
     },
     {
         name: 'Account',
         path: '/account',
-        component: () => import('./Account'),
+        component: () => import('#/Account'),
     },
     {
         name: 'Not Found',
         path: '*',
-        component: () => import('./404'),
+        component: () => import('#/404'),
     },
 ]
 
