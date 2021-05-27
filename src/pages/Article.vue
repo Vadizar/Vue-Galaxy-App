@@ -34,36 +34,44 @@
             Header,
             Error
         },
+
         data() {
             return {
                 loading: true,
                 errored: false,
                 sortBy: false,
                 name: '',
-                galaxies: []
+                items: []
             }
         },
+
         created() {
-            this.axios
-                .get('https://www.metmuseum.org/api/collection/collectionlisting?offset=0&perPage=20&department=11')
-                .then(response => this.galaxies = response.data.results)
-                .catch(() => this.errored = true)
-                .finally(() => this.loading = false)
+            this.fetchItems()
         },
+
         methods: {
+            fetchItems() {
+                const uri = APP_API_URL + 'offset=0&perPage=20&department=11'
+                this.axios
+                    .get(uri)
+                    .then(response => this.items = response.data.results)
+                    .catch(() => this.errored = true)
+                    .finally(() => this.loading = false)
+            },
             sortButton() {
                 this.sortBy = !this.sortBy
             }
         },
+
         computed: {
             filteredList() {
                 const name = this.name
 
                 if (this.sortBy && name === '') {
                     this.sortBy = false
-                    return this.galaxies.reverse()
+                    return this.items.reverse()
                 }
-                return this.galaxies.filter(el => {
+                return this.items.filter(el => {
                     if (name === '') {
                         return true
                     }

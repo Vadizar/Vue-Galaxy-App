@@ -80,7 +80,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new IconFontPlugin(),
         new webpack.DefinePlugin({
-            APP_URL: JSON.stringify(process.env.APP_URL),
+            APP_API_URL: JSON.stringify(process.env.APP_API_URL),
             APP_PATH: JSON.stringify(process.env.APP_PATH)
         }),
         new VueLoaderPlugin(),
