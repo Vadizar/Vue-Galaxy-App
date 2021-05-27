@@ -1,12 +1,12 @@
 <template lang='pug'>
     header
-        h1 Named galaxies
+        h1 Paintings
         .search
             i.i-search
             input(
                 type='text'
                 v-on='listeners'
-                placeholder='Search galaxies'
+                placeholder='Search Paintings'
             )
 </template>
 
@@ -49,6 +49,7 @@
         h1
             font 500 34px/40px 'R'
             padding 15px 0
+
     .search
         display flex
         align-items center

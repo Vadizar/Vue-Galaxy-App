@@ -2,12 +2,12 @@
     aside
         nav
             router-link(to='/')
-                span Main
+                span Home
             router-link(to='/account')
                 span Account
 </template>
 
-<style lang='stylus'>
+<style lang='stylus' scoped>
     aside
         position sticky
         top 0

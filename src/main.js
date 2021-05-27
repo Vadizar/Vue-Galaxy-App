@@ -1,30 +1,14 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+// import VueAxios from 'vue-axios'
+// import axios from 'axios'
+
 import App from './App'
+import router from './router.js'
+
 import './app.styl'
 
-Vue.use(VueRouter);
-
-// Components for router
-const routes = [
-  {
-    path: '/',
-    component: require('./Article').default
-  },
-  {
-    path: '/account',
-    component: require('./Account').default
-  }
-];
-
-// Create router
-const router = new VueRouter({
-  mode: 'history', // History API
-  //path: '*', component: NotFoundComponent, // 404
-  routes, // `routes: routes`
-  linkActiveClass: '',
-  linkExactActiveClass: 'active',
-})
+// Vue.use(VueAxios, axios)
+Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
