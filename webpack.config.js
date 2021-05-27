@@ -4,11 +4,18 @@ const
     autoprefixer = require('autoprefixer'),
     { VueLoaderPlugin } = require('vue-loader'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    IconFontPlugin = require('icon-font-loader').Plugin;
+    IconFontPlugin = require('icon-font-loader').Plugin,
+    { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+require('dotenv').config()
 
 module.exports = {
     mode: 'development',
     entry: path.resolve(__dirname, './src/main.js'),
+    output: {
+        filename: 'script.[hash].js',
+        publicPath: process.env.APP_PATH
+    },
     devServer: {
         historyApiFallback: true,
     },
@@ -25,7 +32,10 @@ module.exports = {
                 use: [
                     'vue-loader',
                     {
-                        loader: 'webpack-atomizer-loader'
+                        loader: 'webpack-atomizer-loader',
+                        options: {
+                            configPath: path.resolve(__dirname, './acssConf.js')
+                        }
                     }
                 ]
             },
@@ -44,23 +54,10 @@ module.exports = {
             {
                 test: /\.styl(us)?$/,
                 use: [
-                    'vue-style-loader',
+                    'style-loader',
                     'css-loader',
                     'icon-font-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: [
-                                autoprefixer({
-                                    overrideBrowserslist:[
-                                        '> 5%',
-                                        'last 4 versions',
-                                    ]
-                                })
-                            ],
-                            // sourceMap: true
-                        }
-                    },
+                    'postcss-loader',
                     {
                         loader: 'stylus-loader',
                         options: {
@@ -73,15 +70,19 @@ module.exports = {
                 test: /\.(svg|ttf|woff|woff2)$/,
                 use: [
                     {
-                        loader: 'file-loader?name=/src/assets/fonts/[name].[ext]'
+                        loader: 'file-loader?name=src/assets/fonts/[name].[ext]'
                     }
                 ]
             }
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new IconFontPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            APP_URL: JSON.stringify(process.env.APP_URL),
+            APP_PATH: JSON.stringify(process.env.APP_PATH)
+        }),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',

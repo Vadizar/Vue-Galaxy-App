@@ -28,7 +28,6 @@
 <script>
     import Header from './Header'
     import Error from './Error'
-    import axios from 'axios'
 
     export default {
         components: {
@@ -45,7 +44,7 @@
             }
         },
         created() {
-            axios
+            this.axios
                 .get('https://www.metmuseum.org/api/collection/collectionlisting?offset=0&perPage=20&department=11')
                 .then(response => this.galaxies = response.data.results)
                 .catch(() => this.errored = true)
