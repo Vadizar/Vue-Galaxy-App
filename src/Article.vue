@@ -23,7 +23,6 @@
                                 figcaption {{ galaxy.title}}
                         .galaxy__itemConstellation {{ galaxy.artist }}
                         .galaxy__itemDesc {{ galaxy.description }}
-
 </template>
 
 <script>

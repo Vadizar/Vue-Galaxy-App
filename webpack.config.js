@@ -8,15 +8,9 @@ const
 
 module.exports = {
     mode: 'development',
-    entry: [
-        './src/main.js'
-    ],
+    entry: path.resolve(__dirname, './src/main.js'),
     devServer: {
-        hot: true,
         historyApiFallback: true,
-        watchOptions: {
-            poll: true
-        }
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
