@@ -5,7 +5,7 @@
 
         section.galaxy(v-else='')
             .galaxy__head
-                button(@click='sortButton')
+                button(@click='sortButton' :class="{ sort: sortBy }")
                     span European Paintings
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Author Name
@@ -78,21 +78,22 @@
                 const result = await rgbaster(APP_PORT + el.image, {ignore: ['rgb(255,255,255)']})
 
                 this.$set(el, 'color', result[0].color)
+            },
+            searchItems() {
+                const name = this.name.toLowerCase()
+
+                return this.items.filter(el =>
+                    el.title.toLowerCase().includes(name)
+                )
             }
         },
 
         computed: {
             filteredList() {
-                const name = this.name
-
                 if (this.sortBy) {
-                    return this.items.filter(el => {
-                        return el.title.toLowerCase().indexOf(name.toLowerCase()) > -1
-                    }).reverse()
+                    return this.searchItems().reverse()
                 }
-                return this.items.filter(el => {
-                    return el.title.toLowerCase().indexOf(name.toLowerCase()) > -1
-                })
+                return this.searchItems()
             }
         }
     }
@@ -126,6 +127,9 @@
             text-align left
             font-weight 700
             color $night-grey
+            &.sort
+                i
+                    transform rotateX(180deg)
         @media (min-width $lg)
             display grid
             grid-template-columns 35% 20% 45%
