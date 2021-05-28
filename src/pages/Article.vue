@@ -71,13 +71,13 @@
                     .catch(() => this.errored = true)
                     .finally(() => this.loading = false)
             },
-            sortButton() {
-                this.sortBy = !this.sortBy
-            },
             async getMiddleColor(el) {
                 const result = await rgbaster(APP_PORT + el.image, {ignore: ['rgb(255,255,255)']})
 
                 this.$set(el, 'color', result[0].color)
+            },
+            sortButton() {
+                this.sortBy = !this.sortBy
             },
             searchItems() {
                 const name = this.name.toLowerCase()
