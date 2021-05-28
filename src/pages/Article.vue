@@ -56,7 +56,7 @@
 
         methods: {
             fetchItems() {
-                const uri = APP_API_URL + 'offset=0&perPage=20&department=11'
+                const uri = APP_PORT + APP_API_URL + 'offset=0&perPage=20&department=11'
                 this.axios
                     .get(uri)
                     .then(response => this.items = response.data.results)
@@ -67,7 +67,7 @@
                 this.sortBy = !this.sortBy
             },
             async getMiddleColor () {
-                const result = await rgbaster('https://cors-anywhere.herokuapp.com/' + 'https://images.metmuseum.org/CRDImages/ep/mobile-large/DT11876.jpg')
+                const result = await rgbaster(APP_PORT + 'https://images.metmuseum.org/CRDImages/ep/mobile-large/DT11876.jpg')
                 console.log(`The dominant color is ${result[0].color} with ${result[0].count} occurrence(s)`)
             }
         },

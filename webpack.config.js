@@ -81,7 +81,8 @@ module.exports = {
         new IconFontPlugin(),
         new webpack.DefinePlugin({
             APP_API_URL: JSON.stringify(process.env.APP_API_URL),
-            APP_PATH: JSON.stringify(process.env.APP_PATH)
+            APP_PATH: JSON.stringify(process.env.APP_PATH),
+            APP_PORT: JSON.stringify(process.env.APP_PORT)
         }),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({

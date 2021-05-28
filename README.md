@@ -3,7 +3,7 @@
 ## Prepare
 
 ```bash
-npm i
+yarn install
 ```
 
 Create .env
@@ -11,7 +11,6 @@ Create .env
 ## Development run
 
 ```bash
-npm run dev
+node server
+yarn run dev
 ```
-
-Open http://localhost:8080 in browser.

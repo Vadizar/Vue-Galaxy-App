@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "cors-anywhere": "^0.4.4",
     "css-loader": "^3.5.2",
     "dotenv": "^10.0.0",
     "file-loader": "^6.0.0",
