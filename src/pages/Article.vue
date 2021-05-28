@@ -86,13 +86,11 @@
                 const name = this.name
 
                 if (this.sortBy) {
-                    this.sortBy = false
-                    return this.items.reverse()
+                    return this.items.filter(el => {
+                        return el.title.toLowerCase().indexOf(name.toLowerCase()) > -1
+                    }).reverse()
                 }
                 return this.items.filter(el => {
-                    if (name === '') {
-                        return true
-                    }
                     return el.title.toLowerCase().indexOf(name.toLowerCase()) > -1
                 })
             }
