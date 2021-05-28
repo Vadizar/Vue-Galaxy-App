@@ -1,5 +1,5 @@
 <template lang='pug'>
-    header
+    header.header
         h1 Paintings
         .search
             i.i-search
@@ -23,7 +23,7 @@
 </script>
 
 <style lang='stylus'>
-    header
+    .header
         display flex
         justify-content space-between
         flex-direction column

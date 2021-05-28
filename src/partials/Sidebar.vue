@@ -1,21 +1,21 @@
 <template lang='pug'>
-    aside
-        nav
+    aside.aside
+        nav.nav
             router-link(to='/')
                 span Home
             router-link(to='/account')
                 span Account
 </template>
 
-<style lang='stylus' scoped>
-    aside
+<style lang='stylus'>
+    .aside
         position sticky
         top 0
         padding 10px 0
         color $white
         @media (min-width $lg)
             padding 38px 0
-    nav
+    .nav
         a
             display inline-block
             font 700 18px/40px 'R'

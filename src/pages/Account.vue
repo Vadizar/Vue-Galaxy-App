@@ -1,6 +1,6 @@
 <template lang='pug'>
     article
-        header
+        header.header
             h1 Account
 </template>
 

@@ -15,7 +15,7 @@
                 .galaxy__load(v-if='loading')
                     | Loading...
                 ul.galaxy__list(v-else='')
-                    li.galaxy__item(v-for='galaxy in filteredList' :key='galaxy.id')
+                    li.galaxy__item(v-for='galaxy in filteredList' :key='galaxy.accessionNumber')
                         .galaxy__itemName
                             figure(class='D(f) Ai(c)')
                                 .galaxy__itemNameImg
@@ -28,6 +28,7 @@
 <script>
     import Header from '@/Header'
     import Error from '@/Error'
+    import rgbaster from 'rgbaster'
 
     export default {
         components: {
@@ -49,6 +50,10 @@
             this.fetchItems()
         },
 
+        mounted() {
+            this.getMiddleColor()
+        },
+
         methods: {
             fetchItems() {
                 const uri = APP_API_URL + 'offset=0&perPage=20&department=11'
@@ -60,6 +65,10 @@
             },
             sortButton() {
                 this.sortBy = !this.sortBy
+            },
+            async getMiddleColor () {
+                const result = await rgbaster('https://cors-anywhere.herokuapp.com/' + 'https://images.metmuseum.org/CRDImages/ep/mobile-large/DT11876.jpg')
+                console.log(`The dominant color is ${result[0].color} with ${result[0].count} occurrence(s)`)
             }
         },
 
