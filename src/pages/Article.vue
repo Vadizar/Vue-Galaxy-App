@@ -122,11 +122,14 @@
         text-transform uppercase
         letter-spacing 1px
         color $grey
-        padding 15px 0
+        > *
+            padding 15px 0
         button
             text-align left
             font-weight 700
             color $night-grey
+            &:hover
+                color $blue
             &.sort
                 i
                     transform rotateX(180deg)
