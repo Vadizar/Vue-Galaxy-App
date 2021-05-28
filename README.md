@@ -1,4 +1,4 @@
-# Galaxies frontend
+# Paintings frontend
 
 ## Prepare
 
