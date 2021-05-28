@@ -15,7 +15,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "cors-anywhere": "^0.4.4",
     "css-loader": "^3.5.2",
