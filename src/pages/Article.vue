@@ -87,7 +87,7 @@
             filteredList() {
                 const name = this.name
 
-                if (this.sortBy && name === '') {
+                if (this.sortBy) {
                     this.sortBy = false
                     return this.items.reverse()
                 }
