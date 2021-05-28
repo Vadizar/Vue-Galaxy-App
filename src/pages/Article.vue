@@ -18,9 +18,9 @@
                     li.galaxy__item(v-for='item in filteredList' :key='item.accessionNumber')
                         .galaxy__itemName
                             figure(class='D(f) Ai(c)')
-                                .galaxy__itemNameImg(ref="item")
+                                .galaxy__itemNameImg(:style='{ background: item.color }')
                                     img(:src='item.image' :alt='item.title' :title='item.title')
-                                figcaption {{ item.title}}
+                                figcaption {{ item.title }}
                         .galaxy__itemConstellation {{ item.artist }}
                         .galaxy__itemDesc {{ item.description }}
 </template>
@@ -66,9 +66,7 @@
                     .get(uri)
                     .then(response => {
                         this.items = response.data.results
-                        this.items.forEach((el, index) => {
-                            this.getMiddleColor(el, index)
-                        })
+                        this.items.forEach(el => this.getMiddleColor(el))
                     })
                     .catch(() => this.errored = true)
                     .finally(() => this.loading = false)
@@ -76,10 +74,10 @@
             sortButton() {
                 this.sortBy = !this.sortBy
             },
-            async getMiddleColor(el, index) {
+            async getMiddleColor(el) {
                 const result = await rgbaster(APP_PORT + el.image, {ignore: ['rgb(255,255,255)']})
 
-                this.$refs.item[index].style.background = result[0].color
+                this.$set(el, 'color', result[0].color)
             }
         },
 
