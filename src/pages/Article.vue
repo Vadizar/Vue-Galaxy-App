@@ -5,7 +5,7 @@
 
         section.galaxy(v-else='')
             .galaxy__head
-                button(@click='sortButton' :class="{ sort: sortBy }")
+                button(@click='sortButton' :class='{ sort: sortBy }')
                     span European Paintings
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Author Name
