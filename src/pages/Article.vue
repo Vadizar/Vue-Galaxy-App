@@ -15,14 +15,14 @@
                 .galaxy__load(v-if='loading')
                     | Loading...
                 ul.galaxy__list(v-else='')
-                    li.galaxy__item(v-for='galaxy in filteredList' :key='galaxy.accessionNumber')
+                    li.galaxy__item(v-for='item in filteredList' :key='item.accessionNumber')
                         .galaxy__itemName
                             figure(class='D(f) Ai(c)')
                                 .galaxy__itemNameImg
-                                    img(:src='galaxy.image' :alt='galaxy.title' :title='galaxy.title')
-                                figcaption {{ galaxy.title}}
-                        .galaxy__itemConstellation {{ galaxy.artist }}
-                        .galaxy__itemDesc {{ galaxy.description }}
+                                    img(:src='item.image' :alt='item.title' :title='item.title')
+                                figcaption {{ item.title}}
+                        .galaxy__itemConstellation {{ item.artist }}
+                        .galaxy__itemDesc {{ item.description }}
 </template>
 
 <script>
@@ -50,24 +50,30 @@
             this.fetchItems()
         },
 
-        mounted() {
-            this.getMiddleColor()
-        },
-
         methods: {
             fetchItems() {
-                const uri = APP_PORT + APP_API_URL + 'offset=0&perPage=20&department=11'
+                const
+                    offset = 0,
+                    perPage = 20,
+                    department = 11,
+                    uri = APP_PORT + APP_API_URL + 'offset=0&perPage=20&department=11'
+
                 this.axios
                     .get(uri)
-                    .then(response => this.items = response.data.results)
+                    .then(response => {
+                        this.items = response.data.results
+                        this.items.forEach(el => {
+                            this.getMiddleColor(el)
+                        })
+                    })
                     .catch(() => this.errored = true)
                     .finally(() => this.loading = false)
             },
             sortButton() {
                 this.sortBy = !this.sortBy
             },
-            async getMiddleColor () {
-                const result = await rgbaster(APP_PORT + 'https://images.metmuseum.org/CRDImages/ep/mobile-large/DT11876.jpg')
+            async getMiddleColor(el) {
+                const result = await rgbaster(APP_PORT + el.image, {ignore: ['rgb(255,255,255)']})
                 console.log(`The dominant color is ${result[0].color} with ${result[0].count} occurrence(s)`)
             }
         },
