@@ -3,7 +3,7 @@
         Header(v-model='name')
         Error(v-if='errored')
 
-        .galaxy(v-else='')
+        section.galaxy(v-else='')
             .galaxy__head
                 button(@click='sortButton')
                     span European Paintings
@@ -18,7 +18,7 @@
                     li.galaxy__item(v-for='item in filteredList' :key='item.accessionNumber')
                         .galaxy__itemName
                             figure(class='D(f) Ai(c)')
-                                .galaxy__itemNameImg
+                                .galaxy__itemNameImg(ref="item")
                                     img(:src='item.image' :alt='item.title' :title='item.title')
                                 figcaption {{ item.title}}
                         .galaxy__itemConstellation {{ item.artist }}
@@ -42,7 +42,10 @@
                 errored: false,
                 sortBy: false,
                 name: '',
-                items: []
+                items: [],
+                offset: 0,
+                perPage: 20,
+                department: 11
             }
         },
 
@@ -53,17 +56,18 @@
         methods: {
             fetchItems() {
                 const
-                    offset = 0,
-                    perPage = 20,
-                    department = 11,
-                    uri = APP_PORT + APP_API_URL + 'offset=0&perPage=20&department=11'
+                    uri = APP_PORT + APP_API_URL + new URLSearchParams({
+                        offset: this.offset,
+                        perPage: this.perPage,
+                        department: this.department,
+                    })
 
                 this.axios
                     .get(uri)
                     .then(response => {
                         this.items = response.data.results
-                        this.items.forEach(el => {
-                            this.getMiddleColor(el)
+                        this.items.forEach((el, index) => {
+                            this.getMiddleColor(el, index)
                         })
                     })
                     .catch(() => this.errored = true)
@@ -72,9 +76,10 @@
             sortButton() {
                 this.sortBy = !this.sortBy
             },
-            async getMiddleColor(el) {
+            async getMiddleColor(el, index) {
                 const result = await rgbaster(APP_PORT + el.image, {ignore: ['rgb(255,255,255)']})
-                console.log(`The dominant color is ${result[0].color} with ${result[0].count} occurrence(s)`)
+
+                this.$refs.item[index].style.background = result[0].color
             }
         },
 
@@ -151,14 +156,16 @@
 
     .galaxy__itemNameImg
         flex-shrink 0
-        width 30px
-        height 30px
+        width 80px
+        height 50px
         margin 5px 7px 5px 0
         overflow hidden
         font-size 10px
+        padding 12px
+        background $grey
         @media (min-width $lg)
-            width 80px
-            height 50px
+            width 140px
+            height 90px
             margin 0 15px 0 0
         img
             object-fit cover
@@ -166,13 +173,12 @@
             width 100%
 
     .galaxy__itemName
-        padding 7px 10px
+        padding 10px
         border 1px solid $devider-grey
         &:before
             content 'European Paintings'
             padding 0 0 2px
         @media (min-width $lg)
-            padding 9px 20px
             border none
 
     .galaxy__itemConstellation
