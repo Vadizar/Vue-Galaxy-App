@@ -5,7 +5,7 @@
 
         section.galaxy(v-else='')
             .galaxy__head
-                button(@click='sortButton' :class='{ sort: sortBy }')
+                button(@click='sortButton' :class='{ sort: reverse }')
                     span European Paintings
                     i.i-arrow(class='Fz(10px) Mstart(9px)')
                 span Author Name
@@ -40,12 +40,13 @@
             return {
                 loading: true,
                 errored: false,
-                sortBy: false,
+                reverse: false,
                 name: '',
                 items: [],
                 offset: 0,
                 perPage: 20,
-                department: 11
+                department: 11,
+                sortBy: 'TitleDesc',
             }
         },
 
@@ -59,6 +60,7 @@
                     uri = APP_PORT + APP_API_URL + new URLSearchParams({
                         offset: this.offset,
                         perPage: this.perPage,
+                        sortBy: this.sortBy,
                         department: this.department,
                     })
 
@@ -72,12 +74,14 @@
                     .finally(() => this.loading = false)
             },
             async getMiddleColor(el) {
-                const result = await rgbaster(APP_PORT + el.image, {ignore: ['rgb(255,255,255)']})
+                const result = await rgbaster(APP_PORT + el.image, {
+                    ignore: ['rgb(255,255,255)', 'rgb(0,0,0)']
+                })
 
                 this.$set(el, 'color', result[0].color)
             },
             sortButton() {
-                this.sortBy = !this.sortBy
+                this.reverse = !this.reverse
             },
             searchItems() {
                 const name = this.name.toLowerCase()
@@ -90,7 +94,7 @@
 
         computed: {
             filteredList() {
-                if (this.sortBy) {
+                if (this.reverse) {
                     return this.searchItems().reverse()
                 }
                 return this.searchItems()

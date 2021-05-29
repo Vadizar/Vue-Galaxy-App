@@ -6,7 +6,7 @@
 yarn install
 ```
 
-Create .env
+Create .env file
 
 ## Development run
 
